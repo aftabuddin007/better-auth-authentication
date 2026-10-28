@@ -1,18 +1,36 @@
 // import React from 'react';
 "use client";
+import { authClient } from "@/app/lib/auth-client";
 // import { Form } from '@heroui/react';
 import {Check} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form ,Input, Label, TextField} from "@heroui/react";
 const Signup = () => {
-    const onSubmit = (e)=>{
+    const onSubmit = async(e)=>{
          e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = {};
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+
+    const userData = Object.fromEntries(formData.entries())
+    console.log(userData)
+    const {data,error}=await authClient.signUp.email({
+        name:userData.name,
+        email:userData.email,
+        password:userData.password,
+        callbackURL:'/auth/login'
+        
+    })
+    console.log("sign up",{data,error})
+    if(error){
+        alert("error signup" + error.message);
+
+    }
+    if(data){
+        alert("signup successful")
+    }
+    // // Convert FormData to plain object
+    // formData.forEach((value, key) => {
+    //   data[key] = value.toString();
+    // });
+    // alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
     }
     return (
         <div>
@@ -29,7 +47,7 @@ const Signup = () => {
             }}
           >
             <Label>Name</Label>
-            <Input placeholder="John Doe" />
+            <Input name="name" placeholder="John Doe" />
             <FieldError />
           </TextField>
           {/* email */}
@@ -45,7 +63,7 @@ const Signup = () => {
         }}
       >
         <Label>Email</Label>
-        <Input placeholder="enter your email " />
+        <Input name="email" placeholder="enter your email " />
         <FieldError />
       </TextField>
       {/* password */}
@@ -68,7 +86,7 @@ const Signup = () => {
         }}
       >
         <Label>Password</Label>
-        <Input placeholder="Enter your password" />
+        <Input name="password" placeholder="Enter your password" />
         <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
         <FieldError />
       </TextField>
