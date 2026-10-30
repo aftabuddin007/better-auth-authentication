@@ -22,6 +22,7 @@ import {
   Check,
   X,
 } from "lucide-react";
+import Link from "next/link";
 
 const Signup = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -254,9 +255,9 @@ const Signup = () => {
         {/* Footer Link */}
         <p className="text-center text-xs text-slate-400 mt-6">
           Already have an account?{" "}
-          <a href="/auth/login" className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+          <Link href="/auth/login" className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
             Log in
-          </a>
+          </Link>
         </p>
       </div>
     </div>

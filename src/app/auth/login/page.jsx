@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { Eye, EyeOff, Mail, Lock, LogIn, AlertCircle, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 
 const Login = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -182,9 +183,9 @@ const Login = () => {
         {/* Footer */}
         <p className="text-center text-xs text-slate-400 mt-6">
           Don&apos;t have an account?{" "}
-          <a href="/auth/signup" className="text-indigo-400 hover:text-indigo-300 font-medium">
+          <Link href="/auth/signup" className="text-indigo-400 hover:text-indigo-300 font-medium">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
