@@ -45,7 +45,7 @@ const Navbar = () => {
           </ul>
 
           {/* Auth Section */}
-          <div className="flex items-center justify-end min-w-[140px]">
+          <div className="flex items-center justify-end min-w-35">
             {isPending ? (
               /* Loading Skeleton */
               <div className="h-8 w-24 animate-pulse rounded-md bg-gray-200 dark:bg-gray-800"></div>
@@ -55,26 +55,25 @@ const Navbar = () => {
                 <span className="hidden text-sm text-gray-600 md:block dark:text-gray-400">
                   Welcome, <span className="font-semibold text-gray-900 dark:text-white">{user.name}</span>!
                 </span>
-                <Button 
+                <button
                   color="danger" 
                   variant="flat" 
                   size="sm" 
                   onPress={() => signOut()}
                 >
                   Sign Out
-                </Button>
+                </button>
               </div>
             ) : (
               /* Logged Out State */
-              <Button 
-                as={Link} 
+              <Link 
                 href="/auth/login" 
                 color="primary" 
                 variant="solid"
                 size="sm"
               >
                 Login
-              </Button>
+              </Link>
             )}
           </div>
           
